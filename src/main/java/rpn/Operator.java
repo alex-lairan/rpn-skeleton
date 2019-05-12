@@ -1,8 +1,8 @@
 package rpn;
 
 public abstract class Operator implements Item {
-    Item x;
-    Item y;
+    protected Item x;
+    protected Item y;
 
     Operator(Item x, Item y) {
         this.x = x;

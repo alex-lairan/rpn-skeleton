@@ -3,7 +3,7 @@ package rpn;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static rpn.CLI.evaluate;
+import static rpn.Evaluator.evaluate;
 
 public class CLITest {
 
@@ -47,8 +47,15 @@ public class CLITest {
     @Test
     public void should_evaluate_simple_formula_with_negative() { assertThat(evaluate("-1 2 + 5 * 2 /")).isEqualTo(2.5); }
 
+    @Test
+    public void should_evaluate_formula_with_floating() { assertThat(evaluate("3 5.5 8 * 7 + *")).isEqualTo(153.0); }
+
     @Test(expected = NumberFormatException.class)
     public void should_do_nothing_with_empty_string() {
         evaluate("");
     }
+
+    @Test(expected = NumberFormatException.class)
+    public void should_do_nothing_with_a_non_numeric() { evaluate(", !"); }
+
 }
