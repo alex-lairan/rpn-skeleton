@@ -6,7 +6,6 @@ import java.util.Stack;
 import java.util.function.BiFunction;
 
 public class Evaluator {
-
     static double evaluate(String expression) {
         // Split | Stack | Evaluate
         String[] rawTokens = expression.split(" ");
@@ -17,6 +16,17 @@ public class Evaluator {
         operators.put("*", Multiply::new);
         operators.put("/", Divide::new);
 
+        Evaluator evaluator = new Evaluator(operators);
+        return evaluator.evaluate(rawTokens);
+    }
+
+    private HashMap<String, BiFunction<Item, Item, Operator>> operators;
+
+    public Evaluator(HashMap<String, BiFunction<Item, Item, Operator>> operators) {
+        this.operators = operators;
+    }
+
+    public double evaluate(String[] rawTokens) {
         Stack<Item> stack = new Stack<>();
         Arrays.stream(rawTokens).forEach(token -> {
             if (operators.containsKey(token)) {
@@ -32,10 +42,11 @@ public class Evaluator {
                 }
             }
         });
+
         return stack.pop().process();
     }
 
-    private static boolean isNumeric(String strNum) {
+    private boolean isNumeric(String strNum) {
         return strNum.matches("-?\\d+(\\.\\d+)?");
     }
 }
