@@ -17,6 +17,7 @@ devienne alors `-1 5 +` évaluée en `4`
 4 2 + 3 -       —>      (4+2)-3 = 3
 3 5 8 * 7 + *   —>  3*((5*8)+7) = 141
 7 2 - 3 4       —>  5 3 4
+-3 ABS          ->         |-3| = 3
 ```
 
 # Projet
@@ -31,6 +32,7 @@ Objectifs:
     * `-`
     * `*`
     * `/` (optionnel)
+    * `ABS` 
 5. Supporter les nombres négatifs
 6. Supporter les nombres à virgules flottantes (optionnel)
 
