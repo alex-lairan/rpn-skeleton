@@ -59,4 +59,13 @@ public class CLITest {
     @Test(expected = NumberFormatException.class)
     public void should_do_nothing_with_a_non_numeric() { evaluator.evaluate(", !"); }
 
+    @Test
+    public void should_evaluate_simple_absolute() { assertThat(evaluator.evaluate("-3 ABS")).isEqualTo(3.0); }
+
+    @Test
+    public void should_evaluate_complexe_formala_with_absolute() { assertThat(evaluator.evaluate("5 5 + -3 ABS -")).isEqualTo(7.0); }
+
+    @Test
+    public void should_evaluate_complexe_formala_2_with_absolute() { assertThat(evaluator.evaluate("5 5 + 85 + 2 * 250 - ABS")).isEqualTo(60.0); }
+
 }
