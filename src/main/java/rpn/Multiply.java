@@ -1,8 +1,10 @@
 package rpn;
 
+import java.util.Stack;
+
 public class Multiply extends Operator {
-    Multiply(Item x, Item y) {
-        super(x, y);
+    Multiply(Stack<Item> stack){
+        super(stack.pop(), stack.pop());
     }
 
     @Override

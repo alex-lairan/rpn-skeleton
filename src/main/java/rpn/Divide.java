@@ -1,8 +1,10 @@
 package rpn;
 
+import java.util.Stack;
+
 public class Divide extends Operator {
-    Divide(Item x, Item y) {
-        super(x, y);
+    Divide(Stack<Item> stack){
+        super(stack.pop(), stack.pop());
     }
 
     @Override

@@ -1,8 +1,10 @@
 package rpn;
 
+import java.util.Stack;
+
 public class Subtraction extends Operator {
-    Subtraction(Item x, Item y) {
-        super(x, y);
+    Subtraction(Stack<Item> stack){
+        super(stack.pop(), stack.pop());
     }
 
     @Override

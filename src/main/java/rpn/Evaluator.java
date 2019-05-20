@@ -3,11 +3,11 @@ package rpn;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Evaluator {
 
-    private HashMap<String, BiFunction<Item, Item, Operator>> operators;
+    private HashMap<String, Function<Stack<Item>, Operator>> operators;
 
     public Evaluator() {
         this.operators = new HashMap<>();
@@ -23,10 +23,7 @@ public class Evaluator {
         Stack<Item> stack = new Stack<>();
         Arrays.stream(rawTokens).forEach(token -> {
             if (operators.containsKey(token)) {
-                Item item1 = stack.pop();
-                Item item2 = stack.pop();
-
-                stack.push(operators.get(token).apply(item1, item2));
+                stack.push(operators.get(token).apply(stack));
             } else {
                 if (isNumeric(token)) {
                     stack.push(new Number(Double.valueOf(token)));
