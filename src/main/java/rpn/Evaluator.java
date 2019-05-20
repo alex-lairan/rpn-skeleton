@@ -6,27 +6,20 @@ import java.util.Stack;
 import java.util.function.BiFunction;
 
 public class Evaluator {
-    static double evaluate(String expression) {
-        // Split | Stack | Evaluate
-        String[] rawTokens = expression.split(" ");
 
-        HashMap<String, BiFunction<Item, Item, Operator>> operators = new HashMap<>();
+    private HashMap<String, BiFunction<Item, Item, Operator>> operators;
+
+    public Evaluator() {
+        this.operators = new HashMap<>();
+
         operators.put("+", Addition::new);
         operators.put("-", Subtraction::new);
         operators.put("*", Multiply::new);
         operators.put("/", Divide::new);
-
-        Evaluator evaluator = new Evaluator(operators);
-        return evaluator.evaluate(rawTokens);
     }
 
-    private HashMap<String, BiFunction<Item, Item, Operator>> operators;
-
-    public Evaluator(HashMap<String, BiFunction<Item, Item, Operator>> operators) {
-        this.operators = operators;
-    }
-
-    public double evaluate(String[] rawTokens) {
+    public double evaluate(String expression) {
+        String[] rawTokens = expression.split(" ");
         Stack<Item> stack = new Stack<>();
         Arrays.stream(rawTokens).forEach(token -> {
             if (operators.containsKey(token)) {
