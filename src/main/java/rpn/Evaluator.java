@@ -17,6 +17,7 @@ public class Evaluator {
         operators.put("*", Multiply::new);
         operators.put("/", Divide::new);
         operators.put("ABS", Absolute::new);
+        operators.put("TIMES", Times::new);
     }
 
     public double evaluate(String expression) {

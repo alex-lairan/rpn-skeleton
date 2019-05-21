@@ -68,4 +68,9 @@ public class CLITest {
     @Test
     public void should_evaluate_complexe_formala_2_with_absolute() { assertThat(evaluator.evaluate("5 5 + 85 + 2 * 250 - ABS")).isEqualTo(60.0); }
 
+    @Test
+    public void should_evaluate_simple_times() { assertThat(evaluator.evaluate("2 3 TIMES")).isEqualTo(222.0); }
+
+    @Test
+    public void should_evaluate_complexe_formula_with_times() { assertThat(evaluator.evaluate("3 2 3 + TIMES")).isEqualTo(33333.0); }
 }
