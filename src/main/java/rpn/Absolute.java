@@ -2,10 +2,11 @@ package rpn;
 
 import java.util.Stack;
 
-public class Absolute extends Operator {
+public class Absolute implements Operator {
+    private Item x;
 
     Absolute(Stack<Item> stack) {
-        super(stack.pop(),null);
+        this.x = stack.pop();
     }
 
     @Override

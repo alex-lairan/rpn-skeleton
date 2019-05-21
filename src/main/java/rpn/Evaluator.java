@@ -37,6 +37,7 @@ public class Evaluator {
         return stack.pop().process();
     }
 
+    @org.jetbrains.annotations.Contract(pure = true)
     private boolean isNumeric(String strNum) {
         return strNum.matches("-?\\d+(\\.\\d+)?");
     }
