@@ -73,4 +73,10 @@ public class CLITest {
 
     @Test
     public void should_evaluate_complexe_formula_with_times() { assertThat(evaluator.evaluate("3 2 3 + TIMES")).isEqualTo(33333.0); }
+
+    @Test
+    public void should_evaluate_drop() { assertThat(evaluator.evaluate("5 2 2 2 DROP 1 +")).isEqualTo(6.0); }
+
+    @Test
+    public void should_evaluate_double_drop() { assertThat(evaluator.evaluate("1 5 2 2 2 DROP 1 + 1 DROP")).isEqualTo(1.0);}
 }

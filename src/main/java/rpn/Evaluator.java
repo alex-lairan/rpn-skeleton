@@ -18,6 +18,7 @@ public class Evaluator {
         operators.put("/", Divide::new);
         operators.put("ABS", Absolute::new);
         operators.put("TIMES", Times::new);
+        operators.put("DROP", Drop::new);
     }
 
     public double evaluate(String expression) {
