@@ -79,4 +79,10 @@ public class CLITest {
 
     @Test
     public void should_evaluate_double_drop() { assertThat(evaluator.evaluate("1 5 2 2 2 DROP 1 + 1 DROP")).isEqualTo(1.0);}
+
+    @Test
+    public void should_evaluate_swap() { assertThat(evaluator.evaluate("5 6 SWAP")).isEqualTo(5); }
+
+    @Test
+    public void should_evaluate_complexe_swap() { assertThat(evaluator.evaluate("5 6 SWAP -")).isEqualTo(1); }
 }
