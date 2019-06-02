@@ -1,8 +1,14 @@
 package rpn;
 
-public class Addition extends Operator {
-    Addition(Item x, Item y) {
-        super(x, y);
+import java.util.Stack;
+
+public class Addition implements Operator {
+    private Item x;
+    private Item y;
+
+    Addition(Stack<Item> stack) {
+        this.x = stack.pop();
+        this.y = stack.pop();
     }
 
     @Override

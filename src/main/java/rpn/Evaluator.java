@@ -3,37 +3,31 @@ package rpn;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Evaluator {
-    static double evaluate(String expression) {
-        // Split | Stack | Evaluate
-        String[] rawTokens = expression.split(" ");
 
-        HashMap<String, BiFunction<Item, Item, Operator>> operators = new HashMap<>();
+    private HashMap<String, Function<Stack<Item>, Operator>> operators;
+
+    public Evaluator() {
+        this.operators = new HashMap<>();
+
         operators.put("+", Addition::new);
         operators.put("-", Subtraction::new);
         operators.put("*", Multiply::new);
         operators.put("/", Divide::new);
-
-        Evaluator evaluator = new Evaluator(operators);
-        return evaluator.evaluate(rawTokens);
+        operators.put("ABS", Absolute::new);
+        operators.put("TIMES", Times::new);
+        operators.put("DROP", Drop::new);
+        operators.put("SWAP", Swap::new);
     }
 
-    private HashMap<String, BiFunction<Item, Item, Operator>> operators;
-
-    public Evaluator(HashMap<String, BiFunction<Item, Item, Operator>> operators) {
-        this.operators = operators;
-    }
-
-    public double evaluate(String[] rawTokens) {
+    public double evaluate(String expression) {
+        String[] rawTokens = expression.split(" ");
         Stack<Item> stack = new Stack<>();
         Arrays.stream(rawTokens).forEach(token -> {
             if (operators.containsKey(token)) {
-                Item item1 = stack.pop();
-                Item item2 = stack.pop();
-
-                stack.push(operators.get(token).apply(item1, item2));
+                stack.push(operators.get(token).apply(stack));
             } else {
                 if (isNumeric(token)) {
                     stack.push(new Number(Double.valueOf(token)));
@@ -46,6 +40,7 @@ public class Evaluator {
         return stack.pop().process();
     }
 
+    @org.jetbrains.annotations.Contract(pure = true)
     private boolean isNumeric(String strNum) {
         return strNum.matches("-?\\d+(\\.\\d+)?");
     }

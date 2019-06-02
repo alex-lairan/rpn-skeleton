@@ -1,10 +1,15 @@
 package rpn;
 
-public class Multiply extends Operator {
-    Multiply(Item x, Item y) {
-        super(x, y);
-    }
+import java.util.Stack;
 
+public class Multiply implements Operator {
+    private Item x;
+    private Item y;
+
+    Multiply(Stack<Item> stack) {
+        this.x = stack.pop();
+        this.y = stack.pop();
+    }
     @Override
     public double process() {
         System.out.println(x.process());

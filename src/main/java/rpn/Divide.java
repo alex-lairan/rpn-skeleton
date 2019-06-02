@@ -1,8 +1,14 @@
 package rpn;
 
-public class Divide extends Operator {
-    Divide(Item x, Item y) {
-        super(x, y);
+import java.util.Stack;
+
+public class Divide implements Operator {
+    private Item x;
+    private Item y;
+
+    Divide(Stack<Item> stack) {
+        this.x = stack.pop();
+        this.y = stack.pop();
     }
 
     @Override
