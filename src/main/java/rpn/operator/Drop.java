@@ -1,4 +1,4 @@
-package rpn;
+package rpn.operator;
 
 import java.util.Stack;
 
@@ -6,7 +6,7 @@ public class Drop implements Operator {
     private Item number;
     private Item remaining;
 
-    Drop(Stack<Item> stack) {
+    public Drop(Stack<Item> stack) {
         this.number = stack.pop();
 
         for(int i = 0; i < this.number.process(); ++i) {

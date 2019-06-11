@@ -1,11 +1,11 @@
-package rpn;
+package rpn.operator;
 
 import java.util.Stack;
 
 public class Absolute implements Operator {
     private Item x;
 
-    Absolute(Stack<Item> stack) {
+    public Absolute(Stack<Item> stack) {
         this.x = stack.pop();
     }
 

@@ -1,24 +1,22 @@
-package rpn;
+package rpn.operator;
 
 import java.util.Stack;
 
-public class Addition implements Operator {
+public class Divide implements Operator {
     private Item x;
     private Item y;
 
-    Addition(Stack<Item> stack) {
+    public Divide(Stack<Item> stack) {
         this.x = stack.pop();
         this.y = stack.pop();
     }
 
     @Override
     public double process() {
-        return x.process() + y.process();
+        return y.process() / x.process();
     }
 
     public String toString() {
-        return "Addition(" + this.x.toString() + ", " + this.y.toString() + ")";
+        return "Divide(" + this.x.toString() + ", " + this.y.toString() + ")";
     }
 }
-
-

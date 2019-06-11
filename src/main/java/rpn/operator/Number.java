@@ -1,9 +1,9 @@
-package rpn;
+package rpn.operator;
 
 public class Number implements Item {
     private double value;
 
-    Number(double value) {
+    public Number(double value) {
         this.value = value;
     }
 

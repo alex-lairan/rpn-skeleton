@@ -1,5 +1,8 @@
 package rpn;
 
+import rpn.operator.*;
+import rpn.operator.Number;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;

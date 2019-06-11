@@ -1,4 +1,4 @@
-package rpn;
+package rpn.operator;
 
 import java.util.Stack;
 
@@ -6,7 +6,7 @@ public class Times implements Operator {
     private Item x;
     private Item y;
 
-    Times(Stack<Item> stack) {
+    public Times(Stack<Item> stack) {
         this.x = stack.pop();
         this.y = stack.pop();
     }

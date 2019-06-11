@@ -1,11 +1,11 @@
-package rpn;
+package rpn.operator;
 
 import java.util.Stack;
 
 public class Swap implements Operator {
     private Item second;
 
-    Swap(Stack<Item> stack) {
+    public Swap(Stack<Item> stack) {
         Item first = stack.pop();
         second = stack.pop();
 
