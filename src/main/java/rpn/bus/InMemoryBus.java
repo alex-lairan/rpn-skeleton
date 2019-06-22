@@ -1,10 +1,12 @@
 package rpn.bus;
 
+import rpn.bus.messages.Message;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-class InMemoryBus implements Bus {
+public class InMemoryBus implements Bus {
     private final HashMap<String, List<Consumer>> consumerByType = new HashMap<>();
 
 

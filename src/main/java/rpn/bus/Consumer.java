@@ -1,5 +1,7 @@
 package rpn.bus;
 
-interface Consumer {
+import rpn.bus.messages.Message;
+
+public interface Consumer {
     void receive(Message message);
 }

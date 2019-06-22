@@ -1,5 +1,8 @@
 package rpn;
 
+import rpn.bus.Bus;
+import rpn.bus.InMemoryBus;
+
 public class CLI {
 
     public static void main(String[] args) {
@@ -12,7 +15,12 @@ public class CLI {
     }
 
     public static void main2(String[] args) {
-        String expression = String.join(" ", args);
+        Bus bus = new InMemoryBus();
+
+        Expression expression = new Expression(bus);
+
+
+//        String expression = String.join(" ", args);
         System.out.println("About to evaluate '" + expression + "'");
 
     }
