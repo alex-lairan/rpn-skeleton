@@ -4,7 +4,7 @@ public class TokenMessage implements Message {
     private final String token;
     private final String expressionId;
 
-    TokenMessage(String token, String expressionId) {
+    public TokenMessage(String expressionId, String token) {
         this.token = token;
         this.expressionId = expressionId;
     }

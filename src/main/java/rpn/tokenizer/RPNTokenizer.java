@@ -1,8 +1,8 @@
 package rpn.tokenizer;
 
-class RPNTokenizer implements Tokenizer {
-    @Override
+class RPNTokenizer /*implements Tokenizer */{
+
     public String[] tokenize(String expression) {
-        return expression.split(" ");
+        return expression.split("\\s+");
     }
 }
