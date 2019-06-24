@@ -1,4 +1,4 @@
-package rpn.tokenizer;
+package rpn;
 
 
 import rpn.bus.Bus;

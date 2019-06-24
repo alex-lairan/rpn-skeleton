@@ -6,7 +6,6 @@ import rpn.bus.InMemoryBus;
 import rpn.bus.messages.ExpressionMessage;
 import rpn.bus.messages.MessageType;
 import rpn.operator.OperatorConsumer;
-import rpn.tokenizer.Tokenizer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +20,6 @@ public class CLITestWithBus {
         bus.subscribe(MessageType.OPERATOR.name(), new OperatorConsumer(bus));
         bus.subscribe(MessageType.RESULT.name(), calc);
         bus.subscribe(MessageType.EOC.name(), ecc);
-//        bus.publish(new ExpressionMessage(String.join(" ", args)));
     }
 
     @Test

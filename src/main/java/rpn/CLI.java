@@ -5,7 +5,6 @@ import rpn.bus.InMemoryBus;
 import rpn.bus.messages.ExpressionMessage;
 import rpn.bus.messages.MessageType;
 import rpn.operator.OperatorConsumer;
-import rpn.tokenizer.Tokenizer;
 
 public class CLI {
 
