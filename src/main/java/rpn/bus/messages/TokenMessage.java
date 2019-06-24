@@ -11,7 +11,7 @@ public class TokenMessage implements Message {
 
     @Override
     public String messageType() {
-        return null;
+        return MessageType.TOKEN.name();
     }
 
     public String getToken() {

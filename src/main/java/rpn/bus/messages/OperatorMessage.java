@@ -7,13 +7,11 @@ import java.util.Stack;
 
 public class OperatorMessage implements Message {
 
-    private String message;
     private Operator operator;
     private String tokenId;
     private Stack<Item> stack;
 
-    public OperatorMessage(String message, Operator operator, String id, Stack<Item> stack) {
-        this.message = message;
+    public OperatorMessage(Operator operator, String id, Stack<Item> stack) {
         this.operator = operator;
         this.stack = stack;
         this.tokenId = id;
@@ -21,7 +19,7 @@ public class OperatorMessage implements Message {
 
     @Override
     public String messageType() {
-        return message;
+        return MessageType.OPERATOR.name();
     }
 
     public Stack<Item> getStack() {
