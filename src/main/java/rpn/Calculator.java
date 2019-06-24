@@ -10,11 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.function.Function;
-import java.util.logging.Logger;
 
 public class Calculator implements Consumer {
-
-    private static final Logger LOGGER = Logger.getLogger(Calculator.class.getName());
 
     private Map<String, Stack<Item>> tokens = new HashMap<>();
     private Map<String, Function<Stack<Item>, Operator>> operators = new HashMap<>();
@@ -46,7 +43,6 @@ public class Calculator implements Consumer {
 
         if (MessageType.RESULT.name().equals(message.messageType())){
             ResultMessage resultMessage = (ResultMessage) message;
-            LOGGER.info(resultMessage.getStack().toString());
             tokens.put(resultMessage.getTokenId(), resultMessage.getStack());
         }
 
@@ -55,11 +51,14 @@ public class Calculator implements Consumer {
 
     private void receiveTokenMessage(TokenMessage message) {
         TokenMessage token = message;
-        LOGGER.info(token.getToken());
         if (operators.containsKey(token.getToken())){
             Operator op = (Operator) operators.get(token.getToken()).apply(tokens.get(token.getExpressionId()));
             bus.publish(new OperatorMessage(op, token.getExpressionId(),tokens.get(token.getExpressionId())));
             return;
+        }
+
+        if (!isNumeric(token.getToken())){
+            throw new NumberFormatException("Entry must be a number or an operator");
         }
 
         if (tokens.containsKey(token.getExpressionId())) {
@@ -68,5 +67,9 @@ public class Calculator implements Consumer {
             tokens.put(token.getExpressionId(), new Stack<>());
             tokens.get(token.getExpressionId()).push(new Number(Double.valueOf(token.getToken())));
         }
+    }
+
+    private boolean isNumeric(String strNum) {
+        return strNum.matches("-?\\d+(\\.\\d+)?");
     }
 }
