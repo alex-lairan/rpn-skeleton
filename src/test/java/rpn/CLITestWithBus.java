@@ -30,25 +30,29 @@ public class CLITestWithBus {
         assertThat(ecc.getFinalResult()).isEqualTo(5);
     }
 
-//    @Test
-//    public void should_evaluate_single_negative_digit_constant() {
-//        assertThat(evaluator.evaluate("-5")).isEqualTo(-5);
-//    }
-//
-//    @Test
-//    public void should_evaluate_multiple_digits_constant() {
-//        assertThat(evaluator.evaluate("17")).isEqualTo(17);
-//    }
-//
-//    @Test
-//    public void should_evaluate_simple_addition() {
-//        assertThat(evaluator.evaluate("17 5 +")).isEqualTo(22);
-//    }
-//
-//    @Test
-//    public void should_evaluate_more_complex_addition() {
-//        assertThat(evaluator.evaluate("2 3 5 + +")).isEqualTo(10);
-//    }
+    @Test
+    public void should_evaluate_single_negative_digit_constant() {
+        bus.publish(new ExpressionMessage("-5"));
+        assertThat(ecc.getFinalResult()).isEqualTo(-5);
+    }
+
+    @Test
+    public void should_evaluate_multiple_digits_constant() {
+        bus.publish(new ExpressionMessage("17"));
+        assertThat(ecc.getFinalResult()).isEqualTo(17);
+    }
+
+    @Test
+    public void should_evaluate_simple_addition() {
+        bus.publish(new ExpressionMessage("17 5 +"));
+        assertThat(ecc.getFinalResult()).isEqualTo(22);
+    }
+
+    @Test
+    public void should_evaluate_more_complex_addition() {
+        bus.publish(new ExpressionMessage("2 3 5 + +"));
+        assertThat(ecc.getFinalResult()).isEqualTo(10);
+    }
 //
 //    @Test
 //    public void should_evaluate_simple_subtraction() { assertThat(evaluator.evaluate("17 5 -")).isEqualTo(12); }

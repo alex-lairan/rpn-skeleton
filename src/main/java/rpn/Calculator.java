@@ -36,17 +36,18 @@ public class Calculator implements Consumer {
     @Override
     public void receive(Message message) {
         if (MessageType.TOKEN.name().equals(message.messageType())) {
-            receiveTokenMessage((TokenMessage) message);
+            TokenMessage tokenMessage = (TokenMessage)message;
+            if (MessageType.TOKEN.name().equals(((TokenMessage)message).getToken())){
+                bus.publish(new EndOfCalculMessage(tokens.get(tokenMessage.getExpressionId()).pop().process()));
+                return;
+            }
+            receiveTokenMessage(tokenMessage);
         }
 
         if (MessageType.RESULT.name().equals(message.messageType())){
             ResultMessage resultMessage = (ResultMessage) message;
             LOGGER.info(resultMessage.getStack().toString());
             tokens.put(resultMessage.getTokenId(), resultMessage.getStack());
-            bus.publish(new EndOfCalculMessage(tokens.get(resultMessage.getTokenId()).pop().process()));
-            if (tokens.get(resultMessage.getTokenId()).size() == 0){
-                return;
-            }
         }
 
 
@@ -62,8 +63,6 @@ public class Calculator implements Consumer {
         }
 
         if (tokens.containsKey(token.getExpressionId())) {
-            if (MessageType.TOKEN.name().equals(token.getToken()))
-                return;
             tokens.get(token.getExpressionId()).push(new Number(Double.valueOf(token.getToken())));
         } else {
             tokens.put(token.getExpressionId(), new Stack<>());
