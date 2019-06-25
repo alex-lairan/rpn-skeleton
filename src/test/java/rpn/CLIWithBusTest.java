@@ -9,11 +9,11 @@ import rpn.operator.OperatorConsumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CLITestWithBus {
+public class CLIWithBusTest {
 
     private Bus bus = new InMemoryBus();
     private EndCalculConsumer ecc = new EndCalculConsumer();
-    public CLITestWithBus() {
+    public CLIWithBusTest() {
         Calculator calc = new Calculator(bus);
         bus.subscribe(MessageType.EXPRESSION.name(), new Tokenizer(bus));
         bus.subscribe(MessageType.TOKEN.name(), calc);
@@ -91,13 +91,11 @@ public class CLITestWithBus {
     @Test(expected = NumberFormatException.class)
     public void should_do_nothing_with_empty_string() {
         bus.publish(new ExpressionMessage(""));
-        ecc.getFinalResult();
     }
 
     @Test(expected = NumberFormatException.class)
     public void should_do_nothing_with_a_non_numeric() {
         bus.publish(new ExpressionMessage(", !"));
-        ecc.getFinalResult();
     }
 
     @Test
